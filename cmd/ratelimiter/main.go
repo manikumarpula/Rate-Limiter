@@ -4,9 +4,11 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
+
+	"rate-limiter/internal/config"
 
 	"github.com/labstack/echo/v4"
-	"ratelimiter/internal/config"
 )
 
 func main() {
@@ -17,10 +19,15 @@ func main() {
 		log.Fatalf("could not load configuration: %v", err)
 	}
 
-	log.Printf("Loaded configuration: server=%s:%d, algo=%s",
-		cfg.Server.Host, cfg.Server.Port, cfg.RateLimiter.Algorithm)
+	banner, err := os.ReadFile("banner.txt")
+	if err != nil {
+		log.Fatalf("could not read banner: %v", err)
+	}
+	fmt.Println(string(banner))
 
 	e := echo.New()
+	e.HideBanner = true
+	
 	e.GET("/health", func(c echo.Context) error {
 		return c.JSON(http.StatusOK, map[string]string{"status": "ok"})
 	})
