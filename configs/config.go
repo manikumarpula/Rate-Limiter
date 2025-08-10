@@ -13,3 +13,7 @@ type Config struct {
 		Format string `mapstructure:"format"`
 	} `mapstructure:"logging"`
 }
+
+type EnvConfig struct {
+	SecretKey string `mapstructure:"secret_key"`
+}
