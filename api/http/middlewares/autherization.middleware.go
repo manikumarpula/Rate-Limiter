@@ -7,9 +7,8 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-func AutherizationMiddleware() echo.MiddlewareFunc {
-	return func(next echo.HandlerFunc) echo.HandlerFunc {
-		return func(c echo.Context) error {
+func AutherizationMiddleware(next echo.HandlerFunc) echo.HandlerFunc {
+	return func(c echo.Context) error {
 			token := c.Request().Header.Get("Authorization")
 			if token == "" {
 				return c.JSON(http.StatusUnauthorized, dtos.BaseResponse{
@@ -18,7 +17,6 @@ func AutherizationMiddleware() echo.MiddlewareFunc {
 					Error:   "Unauthorized",
 				})
 			}
-			return next(c)
-		}
+		return next(c)
 	}
 }
