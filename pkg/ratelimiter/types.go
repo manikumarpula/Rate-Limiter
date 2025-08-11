@@ -6,7 +6,7 @@ import "time"
 type RateLimiter interface {
 	// Allow checks if a request should be allowed based on the key
 	Allow(key string) bool
-	
+
 	// Reset resets the rate limiter for a specific key
 	Reset(key string) error
 }
@@ -21,8 +21,8 @@ type Config struct {
 
 // Response represents the response from a rate limiter check
 type Response struct {
-	Allowed       bool          `json:"allowed"`
-	RemainingRequests int       `json:"remaining_requests"`
-	ResetTime     time.Time     `json:"reset_time"`
-	RetryAfter    time.Duration `json:"retry_after,omitempty"`
+	Allowed           bool          `json:"allowed"`
+	RemainingRequests int           `json:"remaining_requests"`
+	ResetTime         time.Time     `json:"reset_time"`
+	RetryAfter        time.Duration `json:"retry_after,omitempty"`
 }

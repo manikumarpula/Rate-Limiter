@@ -2,7 +2,7 @@ package handlers
 
 import (
 	"net/http"
-	"rate-limiter/api/http/handlers/dtos"
+	"rate-limiter/api/http/dtos"
 
 	"github.com/labstack/echo/v4"
 )
