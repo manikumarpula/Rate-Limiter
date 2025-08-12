@@ -1,0 +1,3 @@
+DROP TABLE IF EXISTS plans;
+DROP TYPE IF EXISTS algorithm;  
+DROP INDEX IF EXISTS idx_plans_name;
