@@ -12,5 +12,5 @@ func main() {
 	if err != nil {
 		log.Fatalf("could not load configuration: %v", err)
 	}
-	http.StartServer(&cfg)
+	http.StartServer(cfg)
 }

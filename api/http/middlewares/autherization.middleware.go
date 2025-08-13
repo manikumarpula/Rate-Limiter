@@ -10,7 +10,7 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-func AutherizationMiddleware(next echo.HandlerFunc,config *config.EnvConfig) echo.HandlerFunc {
+func AutherizationMiddleware(next echo.HandlerFunc,config *config.Config) echo.HandlerFunc {
 	return func(c echo.Context) error {
 		// Check for presence of Authorization header
 		authHeader := c.Request().Header.Get("Authorization")
@@ -30,7 +30,7 @@ func AutherizationMiddleware(next echo.HandlerFunc,config *config.EnvConfig) ech
 		}
 
 		// Validate token
-		jwtService := auth.NewJwtService(config.SecretKey, config.SecretKey)
+		jwtService := auth.NewJwtService(config.JWT.SecretKey, config.JWT.SecretKey)
 
 		_, err := jwtService.DecodeToken(tokenString)
 		if err != nil {
